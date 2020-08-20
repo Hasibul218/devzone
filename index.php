@@ -1,3 +1,8 @@
+<?php 
+	require_once 'app/autoload.php';
+
+
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,17 +21,17 @@
 		<div class="card shadow-sm">
 			<div class="card-body">
 				<h2>Log In</h2>
-				<form action="">
+				<form action = "" method = "POST">
 					<div class="form-group">
 						<label for="">Username / Email</label>
-						<input class="form-control" type="text">
+						<input class="form-control" type="text" name="login_data">
 					</div>
 					<div class="form-group">
 						<label for="">Password</label>
-						<input class="form-control" type="password">
+						<input class="form-control" type="password" name="pass">
 					</div>
 					<div class="form-group">
-						<input class="btn btn-primary" type="submit" value="Sign Up">
+						<input class="btn btn-primary" type="submit" value="Login" name="login">
 					</div>
 				</form>
 			</div>

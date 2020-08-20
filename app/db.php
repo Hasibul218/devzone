@@ -7,7 +7,7 @@
 	$host = 'localhost'; 
 	$user = 'root';
 	$pass = '';
-	$db = 'pm';
+	$db = 'devzone';
 	
 
 	// DB Connection 

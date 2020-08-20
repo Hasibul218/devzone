@@ -5,7 +5,7 @@
 	/**
 	 * File Uploading System 
 	 */
-	function fileUpload($file, $location = '', $file_type = ['jpg','png','gif','jpeg'], $size = 1024){
+	function fileUpload($file, $location = 'img/', $file_type = ['jpg','png','gif','jpeg'], $size = 1024){
 
 		// File informatuion 
 		$file_name = $file['name'];
