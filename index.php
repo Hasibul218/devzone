@@ -1,6 +1,28 @@
 <?php 
 	require_once 'app/autoload.php';
 
+	if (isset($_POST['login'])) {
+		$login_data = $_POST['login_data'];
+		$pass = $_POST['pass'];
+
+		if (empty($login_data) || empty($pass)) {
+			$mess = "<p class='alert alert-danger'>Email or Password recquired !<button class='close' data-dismiss='alert'>&times;</button></p>";
+		}else{
+			$sql = "SELECT * FROM users WHERE email = '$login_data' || uname = '$login_data'";
+			$data = $connection -> query($sql);
+			$user_rows = $data -> num_rows;
+			$login_user = $data -> fetch_assoc();
+			if ($user_rows > 0) {
+				if (password_verify($pass, $login_user['pass']) == true) {
+						header('location: profile.php');
+				}else{
+					$mess = "<p class='alert alert-warning'>Wrong password*<button class='close' data-dismiss='alert'>&times;</button></p>";
+				}
+			}else{
+				$mess = "<p class='alert alert-danger'>Email or username not exist!<button class='close' data-dismiss='alert'>&times;</button></p>";
+			}
+		}
+	}
 
  ?>
 <!DOCTYPE html>
@@ -21,6 +43,12 @@
 		<div class="card shadow-sm">
 			<div class="card-body">
 				<h2>Log In</h2>
+				<!-- all error message -->
+				<?php 
+					if (isset($mess)) {
+						echo $mess;
+					}
+				 ?>
 				<form action = "" method = "POST">
 					<div class="form-group">
 						<label for="">Username / Email</label>
