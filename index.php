@@ -1,5 +1,6 @@
 <?php 
 	require_once 'app/autoload.php';
+	session_start();
 
 	if (isset($_POST['login'])) {
 		$login_data = $_POST['login_data'];
@@ -14,6 +15,10 @@
 			$login_user = $data -> fetch_assoc();
 			if ($user_rows > 0) {
 				if (password_verify($pass, $login_user['pass']) == true) {
+						$_SESSION['uname'] = $login_user['uname'];
+						$_SESSION['name'] = $login_user['name'];
+						$_SESSION['email'] = $login_user['email'];
+						$_SESSION['photo'] = $login_user['photo'];
 						header('location: profile.php');
 				}else{
 					$mess = "<p class='alert alert-warning'>Wrong password*<button class='close' data-dismiss='alert'>&times;</button></p>";
