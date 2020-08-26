@@ -1,7 +1,14 @@
 <?php 
 	require_once 'app/autoload.php';
 	session_start();
-
+	if (isset($_GET['deactive_id'])) {
+		$daid = $_GET['deactive_id'];
+		$sql = "DELETE FROM users WHERE id = '$daid'";
+		$connection ->query($sql);
+		unlink('img/' . $_SESSION['photo']);
+		session_destroy();
+		header('location: index.php');
+	}
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +58,7 @@
 								<?php if($_SESSION['id'] == $user_data['id']): ?>
 									<!-- these two buttton available for only user -->
 									<a class="btn btn-sm btn-warning" href="edit.php?edit_id=<?php echo $user_data['id'] ?>">Edit</a>
-									<a class="btn btn-sm btn-danger" href="#">Deactive</a>
+									<a class="btn btn-sm btn-danger" id="deactive" href="?deactive_id=<?php echo $user_data['id'] ?>">Deactive</a>
 								<?php else: ?>
 									<!-- these buttton available for all -->
 									<a class="btn btn-sm btn-info" href="userview.php?id=<?php echo $user_data['id'] ?>">View</a>

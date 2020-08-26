@@ -14,7 +14,7 @@
 	if (!isset($_SESSION['uname'])) {
 		header('location: index.php');
 	}
-	/*Data retrive from database table(users)*/
+	
 	if (isset($_GET['edit_id'])) {
 		$eid = $_GET['edit_id'];
 	}
@@ -65,7 +65,7 @@
 	
 	<div class="wrap ">
 		<a class="btn btn-sm btn-primary" href="data.php">All users</a>
-		<a class="btn btn-sm btn-primary" href="changepass.php">Change Password</a>
+		<a class="btn btn-sm btn-primary" href="changepass.php?cp_id=<?php echo $_SESSION['id'] ?>">Change Password</a>
 		<div class="card shadow-sm">
 			<div class="card-body">
 				<h6>
