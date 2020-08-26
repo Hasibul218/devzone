@@ -1,9 +1,19 @@
 <?php 
 	session_start();
+	/**
+	 * logout process
+	 */
 	if (isset($_GET['logout'])) {
 		session_destroy();
 		header('location: index.php');
 	}
+	/**
+	 * page security
+	 */
+	if (!isset($_SESSION['uname'])) {
+		header('location: index.php');
+	}
+
  ?>
 <!DOCTYPE html>
 <html lang="en">

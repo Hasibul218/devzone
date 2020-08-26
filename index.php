@@ -16,6 +16,7 @@
 			if ($user_rows > 0) {
 				if (password_verify($pass, $login_user['pass']) == true) {
 						$_SESSION['uname'] = $login_user['uname'];
+						$_SESSION['id'] = $login_user['id'];
 						$_SESSION['name'] = $login_user['name'];
 						$_SESSION['email'] = $login_user['email'];
 						$_SESSION['photo'] = $login_user['photo'];

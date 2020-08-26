@@ -1,5 +1,7 @@
 <?php 
+	require_once 'app/autoload.php';
 	session_start();
+
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,76 +25,40 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th>#</th>
+							<th>SI#</th>
 							<th>Name</th>
 							<th>Email</th>
-							<th>Cell</th>
+							<th>Username</th>
 							<th>Photo</th>
 							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
+						<?php 
+							/*Data retrive from database table(users)*/
+							$sql = "SELECT * FROM users";
+							$data = $connection -> query($sql);
+							$i = 1;
+							while ( $user_data = $data -> fetch_assoc()) :
+						 ?>
 						<tr>
-							<td>1</td>
-							<td>Asraful Haque</td>
-							<td>haq@gmail.com</td>
-							<td>01717700811</td>
-							<td><img src="assets/media/img/pp_photo/istockphoto-615279718-612x612.jpg" alt=""></td>
+							<td><?php echo $i;$i++ ?></td>
+							<td><?php echo $user_data['name'] ?></td>
+							<td><?php echo $user_data['email'] ?></td>
+							<td><?php echo $user_data['uname'] ?></td>
+							<td><img src="img/<?php echo $user_data['photo'] ?>" alt=""></td>
 							<td>
-								<a class="btn btn-sm btn-info" href="#">View</a>
-								<a class="btn btn-sm btn-warning" href="#">Edit</a>
-								<a class="btn btn-sm btn-danger" href="#">Delete</a>
+								<?php if($_SESSION['id'] == $user_data['id']): ?>
+									<!-- these two buttton available for only user -->
+									<a class="btn btn-sm btn-warning" href="#">Edit</a>
+									<a class="btn btn-sm btn-danger" href="#">Deactive</a>
+								<?php else: ?>
+									<!-- these buttton available for all -->
+									<a class="btn btn-sm btn-info" href="#">View</a>
+								<?php endif; ?>
 							</td>
 						</tr>
-						<tr>
-							<td>1</td>
-							<td>Asraful Haque</td>
-							<td>haq@gmail.com</td>
-							<td>01717700811</td>
-							<td><img src="assets/media/img/pp_photo/istockphoto-615279718-612x612.jpg" alt=""></td>
-							<td>
-								<a class="btn btn-sm btn-info" href="#">View</a>
-								<a class="btn btn-sm btn-warning" href="#">Edit</a>
-								<a class="btn btn-sm btn-danger" href="#">Delete</a>
-							</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>Asraful Haque</td>
-							<td>haq@gmail.com</td>
-							<td>01717700811</td>
-							<td><img src="assets/media/img/pp_photo/istockphoto-615279718-612x612.jpg" alt=""></td>
-							<td>
-								<a class="btn btn-sm btn-info" href="#">View</a>
-								<a class="btn btn-sm btn-warning" href="#">Edit</a>
-								<a class="btn btn-sm btn-danger" href="#">Delete</a>
-							</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>Asraful Haque</td>
-							<td>haq@gmail.com</td>
-							<td>01717700811</td>
-							<td><img src="assets/media/img/pp_photo/istockphoto-615279718-612x612.jpg" alt=""></td>
-							<td>
-								<a class="btn btn-sm btn-info" href="#">View</a>
-								<a class="btn btn-sm btn-warning" href="#">Edit</a>
-								<a class="btn btn-sm btn-danger" href="#">Delete</a>
-							</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>Asraful Haque</td>
-							<td>haq@gmail.com</td>
-							<td>01717700811</td>
-							<td><img src="assets/media/img/pp_photo/istockphoto-615279718-612x612.jpg" alt=""></td>
-							<td>
-								<a class="btn btn-sm btn-info" href="#">View</a>
-								<a class="btn btn-sm btn-warning" href="#">Edit</a>
-								<a class="btn btn-sm btn-danger" href="#">Delete</a>
-							</td>
-						</tr>
-						
+						<?php endwhile; ?>
 
 					</tbody>
 				</table>
