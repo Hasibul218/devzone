@@ -54,7 +54,7 @@
 									<a class="btn btn-sm btn-danger" href="#">Deactive</a>
 								<?php else: ?>
 									<!-- these buttton available for all -->
-									<a class="btn btn-sm btn-info" href="#">View</a>
+									<a class="btn btn-sm btn-info" href="userview.php?id=<?php echo $user_data['id'] ?>">View</a>
 								<?php endif; ?>
 							</td>
 						</tr>
