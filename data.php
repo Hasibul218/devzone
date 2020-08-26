@@ -50,7 +50,7 @@
 							<td>
 								<?php if($_SESSION['id'] == $user_data['id']): ?>
 									<!-- these two buttton available for only user -->
-									<a class="btn btn-sm btn-warning" href="#">Edit</a>
+									<a class="btn btn-sm btn-warning" href="edit.php?edit_id=<?php echo $user_data['id'] ?>">Edit</a>
 									<a class="btn btn-sm btn-danger" href="#">Deactive</a>
 								<?php else: ?>
 									<!-- these buttton available for all -->
